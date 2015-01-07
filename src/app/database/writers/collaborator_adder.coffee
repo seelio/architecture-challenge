@@ -1,4 +1,4 @@
-class CollaboratorAdder
+class CollaboratorAdder extends Collaborator
   constructor: (@work, @collaborator) ->
 
   call: (done) ->
@@ -18,17 +18,3 @@ class CollaboratorAdder
       (next) ->
         @_sendEmailToNew(next)
     ], done
-
-  _sendNotificationsToExisting: (collaboratorsToNotify, done) ->
-    collaboratorsToNotify.each (collaborator) ->
-      new Notification(collaborator)
-
-  _sendNotificationsToNew: (done) ->
-    new Notification(@collaborator)
-
-  _sendEmailToExisting: (collaboratorsToNotify, done) ->
-    collaboratorsToNotify.each (collaborator) ->
-      # deliver email via job queue
-
-  _sendEmailToNew: (done) ->
-    # deliver email to @collaborator via job queue
