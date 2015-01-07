@@ -1,5 +1,3 @@
-class Work extends Model
-  addCollaborator: (collaborator, done) ->
-    done()
+schema = new mongoose.Schema(require "../schemas/work")
 
-module.exports = Work
+modules.export = mongoose.model("Work", schema)

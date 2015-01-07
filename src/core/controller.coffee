@@ -9,11 +9,26 @@ class Controller extends Extendable
     @permissionsAutoCheck = false
     @authorize            = ["index", "show", "new", "create", "edit", "update", "destroy"]
 
-  # Internal:
+  # Public:
   respond: (locals) ->
     @res.render()
+    # or other stuff
 
-  # Internal:
+  # Public:
+  respondJson: (locals) ->
+    @res.json(locals)
+
+  # Internal
+  _respond: ->
+    switch requesttype
+    when "json"
+      respond with json
+    else
+      respond with html
+
+
+
+  # Public:
   check: () ->
     args = Array.prototype.slice.call(arguments, 0)
 
@@ -26,18 +41,18 @@ class Controller extends Extendable
     @permissionsChecked = true
 
   # Internal:
-  assertPermissionsChecked: () ->
+  _assertPermissionsChecked: () ->
     unless @permissionsChecked
       throw new UncheckedPermissionError("permissions was not checked for #{@action}")
 
   # Internal: Highest-level internal method
-  run: () ->
+  _run: () ->
     try
       # Run the action
       @[@action]()
 
       # Ensure that permissions have been run in the action method
-      @assertPermissionsChecked() if @assertPermissions
+      @_assertPermissionsChecked() if @assertPermissions
     catch e
       process.nextTick ->
         @res.render("403")
@@ -47,4 +62,5 @@ class Controller extends Extendable
   @call: (action) ->
     (req, res) =>
       instance = new @(action, req, res)
-      instance.run()
+      instance._run()
+      instance._respond()

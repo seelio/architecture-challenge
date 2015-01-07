@@ -6,9 +6,10 @@ class CollaboratorsController extends Controller
     actingUser = User.find()
     userToBeInvited = User.find()
 
-    @check work, actingUser
+    @check(work, actingUser)
 
     ca = new CollaboratorAdder(work, userToBeInvited)
 
     ca.call (err) ->
-      @respond()
+      @respond(redirect: router.link(work))
+      @respondJson()

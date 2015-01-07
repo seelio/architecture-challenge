@@ -1,4 +1,4 @@
-class Collaborator  
+class Collaborator
   _sendNotificationsToExisting: (collaboratorsToNotify, done) ->
     collaboratorsToNotify.each (collaborator) ->
       new Notification(collaborator)
