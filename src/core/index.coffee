@@ -1,6 +1,6 @@
 async = require("async")
-fs = require("fs")
-path = require("path")
+fs    = require("fs")
+path  = require("path")
 
 getAllFiles = (relativePath, iterator) ->
   directoryToRead = path.resolve(__dirname, relativePath)
@@ -14,14 +14,12 @@ getAllFiles = (relativePath, iterator) ->
 getAllFiles "metal", (filePath) ->
   globals[filePath] = require(filePath)
 
-
 getAllFiles "errors", (filePath) ->
-  globals[filePath] = require(filePath)
-
+  error = require(filePath)
+  globals[error.name] = error
 
 getAllFiles "components", (filePath) ->
-  globals.SEE[filePath] = require(filePath)
-
+  globals.SX[filePath] = require(filePath)
 
 getAllFiles "base", (filePath) ->
   globals[filePath] = require(filePath)

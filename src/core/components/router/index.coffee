@@ -14,3 +14,5 @@ class Router
 
   delete: ->
     @app.delete
+
+module.exports = Router

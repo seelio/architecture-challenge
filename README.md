@@ -21,3 +21,10 @@ Design a controller method that will add a collaborator to a work. The controlle
 ## Notes
 
 - I should remove the exceptions
+
+## Questions
+
+- How to handle Exceptions/Errors?
+  - http://stackoverflow.com/a/729412 (the bold part)
+  - http://c2.com/cgi/wiki?DontUseExceptionsForFlowControl
+  - http://www.joyent.com/developers/node/design/errors
