@@ -1,4 +1,4 @@
-# Design Challenge
+# Architecture Challenge
 
 Design a controller method that will add a collaborator to a work. The controller method must:
 
