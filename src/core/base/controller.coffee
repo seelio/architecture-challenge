@@ -1,7 +1,7 @@
 class Controller extends Extendable
   # Internal:
   constructor: (@action, @req, @res) ->
-    @permissionsPath = "../permissions/#{@constructor.permissions}_permissions"
+    @permissionsPath = "../permissions/#{@constructor.permissions.toLowerCase()}_permissions"
 
     # Automatically check permissions
     @permissionsArgs      = null
@@ -9,34 +9,34 @@ class Controller extends Extendable
     @permissionsAutoCheck = false
     @authorize            = ["index", "show", "new", "create", "edit", "update", "destroy"]
 
-  # Public:
-  respond: (locals) ->
-    @res.render()
-    # or other stuff
-
-  # Public:
-  respondJson: (locals) ->
-    @res.json(locals)
+    # stuffs
+    @responseCheckedCount = 0
 
   # Internal
-  _respond: ->
+  _actuallyRespond: ->
+    if @responseCheckedCount != 1
+      # throw new Error("or something")
+
     switch requesttype
     when "json"
       respond with json
     else
       respond with html
 
-
+  # Public: Responds appropriately. This is a very complex function.
+  respond: (@response) ->
+    @responseCheckedCount += 1
+    # lots of complex stuff
 
   # Public:
   check: () ->
     args = Array.prototype.slice.call(arguments, 0)
 
-    permissionsClass     = require permissionsPath
-    permissions          = new @permissionsClass(args)
+    permissionsClass = require permissionsPath
+    permissions      = new @permissionsClass(args)
 
     unless permissions[@action]()
-      throw new AccessDenied("Access denied")
+      throw new AccessDeniedError("Access denied")
 
     @permissionsChecked = true
 
@@ -57,10 +57,10 @@ class Controller extends Extendable
       process.nextTick ->
         @res.render("403")
 
-  # Public: Only public interface to controller
+  # Public: Only public interface to routes
   # Returns method to be run by express router
   @call: (action) ->
     (req, res) =>
       instance = new @(action, req, res)
       instance._run()
-      instance._respond()
+      instance._actuallyRespond()

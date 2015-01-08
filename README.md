@@ -20,5 +20,4 @@ Design a controller method that will add a collaborator to a work. The controlle
 
 ## Notes
 
-- try/catch is an antipattern, but since it's not user code, I think it's fine. There is one possible source of thrown errors (permissions, maybe two if 404s are thrown into the mix, but regardless it all comes from the check method), and the only public point of entry is the Controller.call, and call takes care of the try/catch.
-  - It would be possible to just do if else stuff, but this is a lot neater to me
+- I should remove the exceptions

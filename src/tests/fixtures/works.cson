@@ -1,0 +1,5 @@
+# See rails' fixtures. they're pretty awesome
+
+zachs_first_work:
+  title: "Whee!"
+  slug: "whee"

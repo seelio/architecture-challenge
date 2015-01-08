@@ -23,4 +23,7 @@ class CollaboratorAdder extends Collaborator
         @_sendNotificationsToNew(next)
       (next) ->
         @_sendEmailToNew(next)
-    ], done
+    ], (err) ->
+      return done(err, false) if err?
+
+      done(null, true)

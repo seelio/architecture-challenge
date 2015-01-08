@@ -11,5 +11,11 @@ class CollaboratorsController extends Controller
     ca = new CollaboratorAdder(work, userToBeInvited)
 
     ca.call (err) ->
-      @respond(redirect: router.link(work))
-      @respondJson()
+      @respond
+        html:
+          flash: "You invited the person yay"
+          redirect: router.link(work)
+        json:
+          work: work
+          inviter: actingUser
+          invitee: user
