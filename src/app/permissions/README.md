@@ -1,3 +1,4 @@
+```coffee
 class SomePermissions extends Permissions
   constructor: (@work, @user) ->
 
@@ -16,3 +17,4 @@ class SomePermissions extends Permissions
 
   delete: () ->
     false
+```

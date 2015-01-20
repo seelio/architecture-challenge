@@ -1,3 +1,4 @@
+```coffee
 class SomeController extends Controller
   # This static class variable part of the path to the permissions file
   @permissions = 'foo'
@@ -12,3 +13,4 @@ class SomeController extends Controller
   edit: () ->
   update: () ->
   destroy: () ->
+```

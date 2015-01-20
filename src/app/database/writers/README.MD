@@ -1,3 +1,4 @@
+```coffee
 class SomeService
   constructor: (@foo, @bar) ->
     # this static method can do whatever you want it to
@@ -11,3 +12,4 @@ class SomeService
 
   _privateMethods: () ->
     # create as many private methods as you please
+```
