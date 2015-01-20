@@ -1,1 +1,0 @@
-class Notification extends Model
