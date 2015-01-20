@@ -7,6 +7,21 @@ My goals are primarily to:
 
 Much of my focus was on implementation on the framework which underlies the application.
 
+Components:
+
+- **commander:** controller
+- **configurator:** config loader
+- **guardian:** permissions
+- **logger:** logger
+- **procrastinator:** job queue
+- **router:** router
+- **tester:** test stuff
+
+Random things:
+
+- **core/components/*/expose** these are the parent classes that are inherited
+- **[ect](http://ectjs.com/)** general purpose coffeescript template language
+
 ## The checklist
 
 Design a controller method that will add a collaborator to a work. The controller method must:
