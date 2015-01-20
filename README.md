@@ -1,5 +1,14 @@
 # Architecture Challenge
 
+My goals are primarily to:
+
+- keep the code OOP
+- keep things "declarative"
+
+Much of my focus was on implementation on the framework which underlies the application.
+
+## The checklist
+
 Design a controller method that will add a collaborator to a work. The controller method must:
 
 - [x] Add a collaborator to work
